@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>关系星系｜共同复盘原型</title>
+<style>
+:root{--night:#101c2b;--night2:#17283b;--paper:#f7f3ea;--ink:#202a32;--muted:#69757d;--blue:#5a7f9d;--blue2:#dfeaf1;--coral:#c77e6d;--line:#d9dfdf}
+*{box-sizing:border-box}body{margin:0;background:#e9edf0;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}button,textarea{font:inherit}
+.shell{width:min(1080px,100%);min-height:100vh;margin:auto;background:var(--paper)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(22px,5vw,58px);border-bottom:1px solid rgba(255,255,255,.12);background:var(--night);color:white}.brand{font-family:"Songti SC",STSong,serif;font-size:18px}.badge{color:#b9c9d5;font-size:10px;letter-spacing:.08em}
+.hero{position:relative;overflow:hidden;padding:clamp(62px,9vw,100px) clamp(22px,7vw,82px);background:linear-gradient(145deg,var(--night),var(--night2));color:white}.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(150,190,220,.22);border-radius:50%}.hero:before{width:360px;height:170px;right:-90px;top:38px;transform:rotate(-18deg)}.hero:after{width:180px;height:300px;right:50px;top:-60px;transform:rotate(32deg)}
+.kicker{margin:0 0 18px;color:#9eb8cc;font-size:10px;font-weight:700;letter-spacing:.17em}.hero h1{max-width:680px;margin:0;font-family:"Songti SC",STSong,serif;font-size:clamp(44px,7vw,72px);font-weight:400;line-height:1.15}.hero>p:last-of-type{max-width:620px;margin:28px 0 0;color:#c7d2dc;font-size:14px;line-height:1.9}.star{position:absolute;width:9px;height:9px;border-radius:50%;background:#d6a28f;right:24%;top:43%;box-shadow:72px 55px 0 #88a9be,-46px 82px 0 #d9c8a3}
+.content{padding:60px clamp(22px,7vw,82px) 90px}.notice{display:flex;gap:12px;margin-bottom:38px;padding:16px 18px;border:1px solid #ccd8df;background:#eef4f7;color:#526675;font-size:12px;line-height:1.7}.notice strong{color:var(--blue)}
+.card{padding:clamp(24px,4vw,42px);border:1px solid var(--line);background:#fff}.step{margin:0 0 9px;color:var(--blue);font-size:10px;font-weight:700;letter-spacing:.13em}.card h2{margin:0 0 12px;font-family:"Songti SC",STSong,serif;font-size:30px;font-weight:400}.sub{margin:0 0 28px;color:var(--muted);font-size:13px;line-height:1.8}
+textarea{width:100%;min-height:150px;padding:18px;border:1px solid var(--line);border-radius:0;background:#fbfbf9;color:var(--ink);font-size:14px;line-height:1.8;resize:vertical}textarea:focus{outline:2px solid #c6d8e5;border-color:var(--blue)}
+.focus-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 28px}.chip,.ghost,.primary,.feedback{border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer}.chip{padding:8px 12px;font-size:11px}.chip.active{border-color:var(--blue);background:var(--blue2);color:#365c77}.actions{display:flex;align-items:center;justify-content:space-between;gap:16px}.ghost{padding:11px 14px}.primary{padding:12px 20px;border-color:var(--night);background:var(--night);color:white}.primary:hover{background:var(--blue)}
+#result{display:none;margin-top:28px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.result-card{padding:24px;border:1px solid var(--line);background:#fff}.result-card.wide{grid-column:1/-1}.result-card h3{margin:0 0 14px;font-size:13px}.result-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.85}.quote{padding:18px;border-left:2px solid var(--coral);background:#fbf2ee;color:#5d514d!important;font-family:"Songti SC",STSong,serif;font-size:17px!important}.possibilities{display:grid;gap:10px}.possibility{padding:15px;border:1px solid var(--line);background:#fafbfa}.possibility strong{display:block;margin-bottom:7px;color:var(--ink);font-size:12px}.feedback-row{display:flex;gap:8px;margin-top:11px}.feedback{padding:6px 10px;font-size:10px}.feedback.selected{border-color:var(--blue);background:var(--blue2);color:#365c77}.reflection{margin-top:12px;color:var(--blue)!important;font-size:11px!important}.rewrite{margin-top:10px;padding:18px;background:#edf3f6;color:#365569!important;font-family:"Songti SC",STSong,serif;font-size:17px!important}.result-actions{display:flex;justify-content:flex-end;margin-top:20px}
+.ethics{margin-top:30px;color:#8a9296;font-size:10px;line-height:1.7}footer{padding:26px clamp(22px,7vw,82px);border-top:1px solid var(--line);color:#8b9498;font-size:9px;letter-spacing:.1em}
+@media(max-width:680px){.result-grid{grid-template-columns:1fr}.result-card.wide{grid-column:auto}.actions{align-items:stretch;flex-direction:column}.actions button{width:100%}.badge{display:none}}
+</style>
+<style>.embedded .hero,.embedded footer{display:none}.embedded .content{padding:20px}.embedded .topbar{padding:18px 20px}.embedded .card{padding:22px}.embedded .shell{margin:0;box-shadow:none}</style>
+<script>if(new URLSearchParams(location.search).get('embed')==='1')document.documentElement.classList.add('embedded');</script>
+</head>
+<body>
+<main class="shell">
+  <header class="topbar"><div class="brand">关系星系</div><div class="badge">共同复盘 · 概念原型</div></header>
+  <section class="hero"><p class="kicker">RELATIONSHIP REFLECTION</p><h1>不是替你读懂 TA，<br>而是一起看见更多可能。</h1><p>把一段冲突暂时放慢：区分观察、感受、需要与请求，也允许你不同意系统给出的解释。</p><i class="star"></i></section>
+  <section class="content">
+    <div class="notice"><strong>使用边界</strong><span>这是共同复盘工具，不是心理诊断。请勿在未经对方同意时录音或上传真实对话；本原型不保存输入内容。</span></div>
+    <section class="card">
+      <p class="step">从一段具体时刻开始</p><h2>发生了什么？</h2><p class="sub">写下你记得的一句话或一个片段。无需完整，也无需证明谁对谁错。</p>
+      <textarea id="dialogue" placeholder="例如：你总是迟到，根本不在乎我的感受。"></textarea>
+      <div class="focus-row" aria-label="复盘视角"><button class="chip active" data-focus="互动循环">看看互动循环</button><button class="chip" data-focus="自己的感受">先理解自己</button><button class="chip" data-focus="对方的处境">想象对方的处境</button></div>
+      <div class="actions"><button class="ghost" id="example">使用示例</button><button class="primary" id="analyze">开始共同复盘</button></div>
+    </section>
+
+    <section id="result" aria-live="polite">
+      <div class="result-grid">
+        <article class="result-card wide"><h3>先把评价还原成一个时刻</h3><p class="quote" id="observation"></p></article>
+        <article class="result-card"><h3>可能的感受与需要</h3><div class="possibilities" id="possibilities"></div><p class="reflection" id="feedbackNote">这些只是可能性。你的修正比系统判断更重要。</p></article>
+        <article class="result-card"><h3>换一种可以继续对话的表达</h3><p>从“判断对方”转向“描述自己”，并提出一个可以回应的请求。</p><p class="rewrite" id="rewrite"></p></article>
+        <article class="result-card wide"><h3>留给彼此的问题</h3><p id="question">如果暂时不争论对错，你最希望对方理解的是什么？你愿意怎样确认对方真正经历了什么？</p></article>
+      </div>
+      <div class="result-actions"><button class="ghost" id="again">换一段重新复盘</button></div>
+    </section>
+    <p class="ethics">设计原则：不替任何一方定义真相；提供多种解释；允许修正和拒绝；把关系理解视为协商过程。</p>
+  </section>
+  <footer><a href="/">杨雅姝 · Joshua Yang</a> · INTERACTION PROTOTYPE · 2026</footer>
+</main>
+<script>
+const dialogue=document.querySelector('#dialogue'),result=document.querySelector('#result'),possibilities=document.querySelector('#possibilities');let focus='互动循环';
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');focus=b.dataset.focus});
+document.querySelector('#example').onclick=()=>dialogue.value='你总是迟到，根本不在乎我的感受！我每次都要一个人等很久。';
+function possibilitiesFor(text){if(/迟到|等|时间/.test(text))return[['被重视','等待可能让人感到自己没有被放在心上。'],['可预期与安心','不确定何时出现，也可能带来失控和焦虑。']];if(/家务|做饭|孩子|照护|照顾/.test(text))return[['公平与被看见','负担没有被承认，可能比任务本身更让人疲惫。'],['休息与支持','持续承担责任的人，也需要有人接住。']];if(/不回|忽视|冷淡|不说/.test(text))return[['回应与连接','沉默可能被体验为关系正在远离。'],['空间与安全','另一方也可能需要时间整理情绪。']];return[['被理解','强烈表达背后，可能有一个尚未被听见的经验。'],['安全与选择','冲突中双方都可能需要更可控的回应方式。']]}
+document.querySelector('#analyze').onclick=()=>{const text=dialogue.value.trim();if(!text){dialogue.focus();dialogue.placeholder='请先写下一句话或使用示例';return}const ps=possibilitiesFor(text);document.querySelector('#observation').textContent=`我听见这段话里有一个具体处境：“${text.slice(0,90)}${text.length>90?'…':''}”`;possibilities.innerHTML=ps.map((p,i)=>`<div class="possibility"><strong>${p[0]}</strong><span>${p[1]}</span><div class="feedback-row"><button class="feedback" data-i="${i}" data-v="像">有一点像</button><button class="feedback" data-i="${i}" data-v="不像">不太像</button></div></div>`).join('');document.querySelector('#rewrite').textContent=`当这件事发生时，我感到有些难过和不安，因为我很在意“${ps[0][0]}”。下次我们能不能先告诉彼此发生了什么，再一起想一个双方都能接受的办法？`;document.querySelector('#question').textContent=focus==='自己的感受'?'此刻你身体里最明显的感受是什么？它在提醒你保护什么？':focus==='对方的处境'?'除了你已经想到的解释，对方还可能处在什么情境里？怎样询问而不是猜测？':'你们是否反复进入同一种追赶、沉默或防御？哪一步最有可能被轻轻改变？';result.style.display='block';result.scrollIntoView({behavior:'smooth'});document.querySelectorAll('.feedback').forEach(b=>b.onclick=()=>{b.parentElement.querySelectorAll('.feedback').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.querySelector('#feedbackNote').textContent=b.dataset.v==='像'?'谢谢你的确认。下一步仍需要和当事人核对，而不是把它当成结论。':'谢谢你的修正。系统的解释可以被拒绝，请以你的经验为准。'});};
+document.querySelector('#again').onclick=()=>{result.style.display='none';dialogue.focus();scrollTo({top:document.querySelector('.card').offsetTop-20,behavior:'smooth'})};
+if(document.documentElement.classList.contains('embedded'))document.querySelector('#example').click();
+</script>
+</body></html>
